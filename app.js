@@ -9,12 +9,10 @@ console.log(address.number);
 var str = JSON.stringify(address);
 var str2 =  _.upperCase(str);
 
-const func = (x) => {
-    
-   return  x+1;
-}
+const func = (x) => x+1;
 
 console.log(func(2));
+
 
 
 
