@@ -11,7 +11,7 @@ var str2 =  _.upperCase(str);
 
 const func = (x) => x+1;
 
-console.log(func(2));
+console.log(func(3));
 
 
 
