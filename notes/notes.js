@@ -5,11 +5,11 @@ var listNotes = () => {
 }
 
 var addNote = () => {
-    console.log('add Note');
+    console.log('add Noteeee');
 }
 
 var removeNote = () => {
-    console.log('remove Note');
+    console.log('remove Noteeee');
 }
 
 module.exports = {listNotes, addNote, removeNote};
