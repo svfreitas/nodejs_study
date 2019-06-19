@@ -5,7 +5,7 @@ var listNotes = () => {
 }
 
 var addNote = () => {
-    console.log('add Note');
+    console.log('add Noteeee');
 }
 
 var removeNote = () => {
