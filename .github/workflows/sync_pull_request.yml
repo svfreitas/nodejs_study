@@ -1,0 +1,29 @@
+name: Sync Pull Request to GitLab
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install requests
+        run: |
+          python -m pip install requests
+
+      - name: Create Merge Request in GitLab
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB_PROJECT_ID: '<your-gitlab-project-id>'
+        run: |
+          python create_merge_request.py
+
