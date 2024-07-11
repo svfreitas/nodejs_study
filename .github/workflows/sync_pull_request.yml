@@ -12,8 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
-
+          fetch-depth: 0  # Ensure a full clone
       - name: Set up Git
         run: |
           git config --global user.name "${{ github.actor }}"
