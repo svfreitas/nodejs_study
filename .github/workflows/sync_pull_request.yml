@@ -84,6 +84,6 @@ jobs:
       - name: Create Merge Request in GitLab
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-          GITLAB_PROJECT_ID: '<your-gitlab-project-id>'
+          GITLAB_PROJECT_ID: os.getenv("GITLAB_PROJECT_ID")
         run: |
           python create_merge_request.py
