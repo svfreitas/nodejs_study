@@ -1,7 +1,7 @@
 
 
 var listNotes = () => {
-    console.log('list all notesss');
+    console.log('list all notes');
 }
 
 var addNote = () => {
