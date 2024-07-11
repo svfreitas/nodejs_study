@@ -22,8 +22,8 @@ jobs:
       - name: Push to GitLab
         env:
           GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-          GITLAB_USERNAME: 'svfreitas'
-          GITLAB_PROJECT_ID: '59818258'
+          GITLAB_USERNAME: 'teste4825328'
+          GITLAB_PROJECT_ID: 'nodejs_study'
         run: |
           git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.com/${GITLAB_USERNAME}/${GITLAB_PROJECT_ID}.git
           git push gitlab ${{ github.event.pull_request.head.ref }}:${{ github.event.pull_request.head.ref }}
