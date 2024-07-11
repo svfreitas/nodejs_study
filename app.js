@@ -3,7 +3,7 @@ const _ = require('lodash');
 const notes = require('./notes/notes.js').default;
 
 const fs = require('fs');
-
+ssss
 var str  = 'teste';
 
 // issssvar address = { street : 'Rua', number : 123};
