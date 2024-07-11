@@ -1,0 +1,89 @@
+name: Sync Pull Request to GitLab
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # Ensure a full clone
+          ref: ${{ github.event.pull_request.head.ref }}  # Checkout the pull request branch
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: Push to GitLab
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB_USERNAME: 'teste4825328'
+          GITLAB_PROJECT_ID: 'nodejs_study'
+        run: |
+          git remote add gitlab https://oauth2:${GITLAB_TOKEN}@gitlab.com/${GITLAB_USERNAME}/${GITLAB_PROJECT_ID}.git
+          git push gitlab ${{ github.event.pull_request.head.ref }}:${{ github.event.pull_request.head.ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install requests
+        run: |
+          python -m pip install requests
+
+      - name: Create Merge Request Script
+        run: |
+          echo 'import os
+          import json
+          import requests
+          from urllib.parse import quote
+          
+          GITHUB_REPOSITORY = os.getenv("GITHUB_REPOSITORY")
+          GITHUB_EVENT_PATH = os.getenv("GITHUB_EVENT_PATH")
+          
+          with open(GITHUB_EVENT_PATH, "r") as f:
+              event_data = json.load(f)
+          
+          pr_title = event_data["pull_request"]["title"]
+          pr_body = event_data["pull_request"]["body"]
+          pr_source_branch = event_data["pull_request"]["head"]["ref"]
+          pr_target_branch = event_data["pull_request"]["base"]["ref"]
+          pr_url = event_data["pull_request"]["html_url"]
+          
+          GITLAB_TOKEN = os.getenv("GITLAB_TOKEN")
+          GITLAB_PROJECT_ID = '59818258'
+          GITLAB_API_URL = f"https://gitlab.com/api/v4/projects/59818258/merge_requests"
+          
+          headers = {
+              "Private-Token": GITLAB_TOKEN,
+              "Content-Type": "application/json",
+          }
+          
+          data = {
+              "source_branch": pr_source_branch,
+              "target_branch": pr_target_branch,
+              "title": pr_title,
+              "description": f"{pr_body}\\n\\nOriginal pull request: {pr_url}",
+          }
+          
+          response = requests.post(GITLAB_API_URL, headers=headers, json=data)
+          
+          if response.status_code == 201:
+              print("Merge request created successfully in GitLab.")
+          else:
+              print(f"Failed to create merge request in GitLab: {response.content}")
+              response.raise_for_status()' > create_merge_request.py
+
+      - name: Create Merge Request in GitLab
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+          GITLAB_PROJECT_ID: os.getenv("GITLAB_PROJECT_ID")
+        run: |
+          python create_merge_request.py
