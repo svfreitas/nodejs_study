@@ -9,7 +9,7 @@ var addNote = () => {
 }
 
 var removeNote = () => {
-    console.log('remove Noteeee');
+    console.log('reeeemove Noteeee');
 }
 
 module.exports = {listNotes, addNote, removeNote};
