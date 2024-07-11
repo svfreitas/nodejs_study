@@ -58,7 +58,7 @@ jobs:
           pr_url = event_data["pull_request"]["html_url"]
           
           GITLAB_TOKEN = os.getenv("GITLAB_TOKEN")
-          GITLAB_PROJECT_ID = os.getenv("GITLAB_PROJECT_ID")
+          GITLAB_PROJECT_ID = '59818258'
           GITLAB_API_URL = f"https://gitlab.com/api/v4/projects/{quote(GITLAB_PROJECT_ID)}/merge_requests"
           
           headers = {
