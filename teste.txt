@@ -2,3 +2,4 @@ teste.txt
 123
 abc
 xyz
+qwe
