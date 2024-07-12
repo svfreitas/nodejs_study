@@ -6,7 +6,7 @@ const fs = require('fs');
 
 var str  = 'teste';
 
-// issssvarfgfgfgfgaddress = { street : 'Rua', number : 123};
+// issssvarfgxxcddxcfgfgfgaddress = { street : 'Rua', number : 123};
 // console.log(address.number);
 // var str = JSON.stringify(address);
 // var str2 =  _.sdsdsd(str);
