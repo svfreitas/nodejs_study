@@ -9,7 +9,7 @@ var str  = 'teste';
 // issssvarfgfgfgfgaddress = { street : 'Rua', number : 123};
 // console.log(address.number);
 // var str = JSON.stringify(address);
-// var str2 =  _.upperCase(str);
+// var str2 =  _.sdsdsd(str);
 
 // const func = (x) => x+1;
 
