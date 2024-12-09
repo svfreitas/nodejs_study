@@ -12,4 +12,4 @@ var removeNote = () => {
     console.log('reeeemove Noteeee');
 }
 
-module.exports = {listNotes, addNote, removeNote};
+module.exports = {listNotesccc, addNote, removeNote};
