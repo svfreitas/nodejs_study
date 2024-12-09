@@ -4,7 +4,7 @@ const notes = require('./notes/notes.js').default;
 
 const fs = require('fs');
 
-var str  = 'teste';
+var str  = 'testeeeeeeeeee';
 
 // issssvarfgfgfgfgaddress = { street : 'Rua', number : 123};
 // console.log(address.number);
